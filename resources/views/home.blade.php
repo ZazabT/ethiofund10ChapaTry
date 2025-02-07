@@ -1,20 +1,73 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout')
 
-        <title>EthioFund10</title>
+@section('content')
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+<!-- Hero Section -->
+<section class="relative bg-cover bg-center bg-no-repeat text-white text-center rounded-2xl min-h-[calc(100vh-150px)] flex items-center justify-center overflow-hidden"
+    style="background-image: url('https://images.pexels.com/photos/3101214/pexels-photo-3101214.jpeg?auto=compress&cs=tinysrgb&w=600');">
+    
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-50 rounded-2xl"></div>
 
-        <!-- Styles -->
-       
-    </head>
-    <body class="antialiased">
-        <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+    <!-- Content -->
+    <div class="relative z-10 max-w-3xl mx-auto text-center px-6">
+        <h1 class="text-6xl font-extrabold tracking-wide font-sans leading-tight">
+            Support & Fundraise for a Cause
+        </h1>
+        <p class="mt-4 text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">
+            Join a vibrant community of changemakers, philanthropists, and visionaries working together 
+            to drive real impact. Whether it's for personal needs, community projects, or global initiatives, 
+            we provide the tools to make fundraising simple and effective.
+        </p>
+    </div>
+
+    <!-- CTA Button Positioned Bottom Right -->
+    <a href="#" class="absolute bottom-10 right-10 px-6 py-3 bg-lime-500 bg-opacity-90 text-gray-900 font-bold rounded-2xl shadow-md hover:bg-lime-600 hover:bg-opacity-80 transition duration-300">
+        Start Campaign
+    </a>
+
+</section>
+
+<!-- Heading Section -->
+<div class="mt-16">
+    <h2 class="text-4xl font-extrabold text-gray-900 mb-3">
+        Fund, <span class="text-lime-500">Fast As Flash</span>
+    </h2>
+    <p class="text-lg text-gray-600 max-w-2xl ">
+        Get started in just a few clicks! Create campaigns, share them across social media, 
+        and receive funds instantly. Our secure and transparent system ensures fast transactions, 
+        so you can focus on what matters most—making a difference.
+    </p>
+</div>
+
+<!-- Cards Section -->
+<section class="mt-12">
+    <div class="grid md:grid-cols-3 gap-8">
+        
+        <!-- Card 1 -->
+        <div class="p-8 bg-white shadow-lg rounded-2xl border border-gray-200 hover:shadow-xl transition duration-300">
+            <h3 class="text-xl font-bold text-gray-800">Instant Campaign Setup</h3>
+            <p class="mt-3 text-gray-600">Create a fundraising campaign in minutes and start receiving support instantly.</p>
         </div>
-    </body>
-</html>
+
+        <!-- Card 2 -->
+        <div class="p-8 bg-white shadow-lg rounded-2xl border border-gray-200 hover:shadow-xl transition duration-300">
+            <h3 class="text-xl font-bold text-gray-800">Secure & Fast Transactions</h3>
+            <p class="mt-3 text-gray-600">We ensure safe and rapid payments so you can access funds without delays.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="p-8 bg-white shadow-lg rounded-2xl border border-gray-200 hover:shadow-xl transition duration-300">
+            <h3 class="text-xl font-bold text-gray-800">Global Reach</h3>
+            <p class="mt-3 text-gray-600">Connect with donors and supporters from all over the world.</p>
+        </div>
+
+    </div>
+</section>
+
+
+
+<!-- Campain card sections Section -->
+
+
+@endsection
