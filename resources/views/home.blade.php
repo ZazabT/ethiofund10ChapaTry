@@ -16,27 +16,26 @@
         </h1>
         <p class="mt-4 text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">
             Join a vibrant community of changemakers, philanthropists, and visionaries working together 
-            to drive real impact. Whether it's for personal needs, community projects, or global initiatives, 
-            we provide the tools to make fundraising simple and effective.
+            to drive real impact.
         </p>
     </div>
 
     <!-- CTA Button Positioned Bottom Right -->
-    <a href="#" class="absolute bottom-10 right-10 px-6 py-3 bg-lime-500 bg-opacity-90 text-gray-900 font-bold rounded-2xl shadow-md hover:bg-lime-600 hover:bg-opacity-80 transition duration-300">
+    <a href="#" class="absolute bottom-10 right-10 px-6 py-3 bg-lime-500 bg-opacity-70 text-gray-900 font-bold rounded-2xl shadow-md hover:bg-lime-600 hover:bg-opacity-50 transition duration-300">
         Start Campaign
     </a>
 
 </section>
 
 <!-- Heading Section -->
-<div class="mt-16">
-    <h2 class="text-4xl font-extrabold text-gray-900 mb-3">
+<div class="mt-20">
+    <h2 class="text-4xl  text-gray-900 mb-3">
         Fund, <span class="text-lime-500">Fast As Flash</span>
     </h2>
-    <p class="text-lg text-gray-600 max-w-2xl ">
+    <p class="text-lg text-gray-600 ">
         Get started in just a few clicks! Create campaigns, share them across social media, 
         and receive funds instantly. Our secure and transparent system ensures fast transactions, 
-        so you can focus on what matters most—making a difference.
+        
     </p>
 </div>
 
@@ -45,19 +44,19 @@
     <div class="grid md:grid-cols-3 gap-8">
         
         <!-- Card 1 -->
-        <div class="p-8 bg-white shadow-lg rounded-2xl border border-gray-200 hover:shadow-xl transition duration-300">
+        <div class="p-8 bg-gray-50 shadow-lg rounded-2xl border border-gray-200 hover:shadow-xl transition duration-300">
             <h3 class="text-xl font-bold text-gray-800">Instant Campaign Setup</h3>
             <p class="mt-3 text-gray-600">Create a fundraising campaign in minutes and start receiving support instantly.</p>
         </div>
 
         <!-- Card 2 -->
-        <div class="p-8 bg-white shadow-lg rounded-2xl border border-gray-200 hover:shadow-xl transition duration-300">
+        <div class="p-8 bg-gray-50 shadow-lg rounded-2xl border border-gray-200 hover:shadow-xl transition duration-300">
             <h3 class="text-xl font-bold text-gray-800">Secure & Fast Transactions</h3>
             <p class="mt-3 text-gray-600">We ensure safe and rapid payments so you can access funds without delays.</p>
         </div>
 
         <!-- Card 3 -->
-        <div class="p-8 bg-white shadow-lg rounded-2xl border border-gray-200 hover:shadow-xl transition duration-300">
+        <div class="p-8 bg-gray-50 shadow-lg rounded-2xl border border-gray-200 hover:shadow-xl transition duration-300">
             <h3 class="text-xl font-bold text-gray-800">Global Reach</h3>
             <p class="mt-3 text-gray-600">Connect with donors and supporters from all over the world.</p>
         </div>

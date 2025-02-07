@@ -39,7 +39,7 @@
         <!-- Right: Authentication Links -->
         <div class="flex items-center space-x-6">
             <a href="" class="text-gray-700 hover:text-lime-500 font-medium text-md transition duration-300">Login</a>
-            <a href="" class="px-5 py-2 bg-lime-500 text-white font-semibold text-md rounded-lg shadow-md hover:bg-lime-600 transition duration-300">
+            <a href="" class="px-5 py-2 bg-lime-500 bg-opacity-70 text-gray-900 font-bold text-md rounded-lg shadow-md hover:bg-lime-600 transition duration-300">
                 Register
             </a>
         </div>
