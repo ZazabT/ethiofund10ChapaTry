@@ -11,13 +11,25 @@
     <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
         <h2 class="text-3xl font-bold text-gray-800 text-center">Login</h2>
 
-        <form method="POST" action="" class="mt-6">
+        <!-- Login Form -->
+        <form method="POST" action="{{ route('login') }}" class="mt-6">
             @csrf
+
+            <!-- Success/Errors -->
+        @if(session('success'))
+        <div class="bg-green-500 text-white p-3 rounded-md mb-4">
+            {{ session('success') }}
+        </div>
+        @elseif(session('error'))
+            <div class="bg-red-500 text-white p-3 rounded-md mb-4">
+                {{ session('error') }}
+            </div>
+        @endif
 
             <!-- Email -->
             <div class="mb-4">
                 <label for="email" class="block text-gray-700 font-medium">Email Address</label>
-                <input type="email" id="email" name="email" class="mt-1 w-full px-4 py-2 border rounded-md focus:ring focus:ring-lime-500 focus:border-lime-500" required>
+                <input type="email" id="email" name="email" class="mt-1 w-full px-4 py-2 border rounded-md focus:ring focus:ring-lime-500 focus:border-lime-500" required value="{{ old('email') }}">
                 @error('email')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
@@ -31,6 +43,13 @@
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
+
+            <!-- Display Flash Error Message if Login Failed -->
+            @if(session('error'))
+                <div class="text-red-500 text-sm mt-2">
+                    {{ session('error') }}
+                </div>
+            @endif
 
             <!-- Login Button -->
             <button type="submit" class="w-full bg-lime-500 text-white py-2 rounded-md font-semibold hover:bg-lime-600 transition">

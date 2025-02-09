@@ -73,7 +73,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-10 mt-10 rounded-2xl mx-10">
+    <footer class="bg-gray-900 text-white py-10 m-10 rounded-2xl mx-10">
         <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center text-center md:text-left">
             
             <!-- Logo & Tagline -->

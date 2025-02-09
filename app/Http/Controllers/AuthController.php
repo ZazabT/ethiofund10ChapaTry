@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use App\Models\User;
+use Illuminate\Validation\ValidationException;
+
 
 class AuthController extends Controller
 {
@@ -38,7 +40,7 @@ class AuthController extends Controller
             // Redirect with success message
             return redirect()->route('home')->with('success', 'Registration successful and logged in.');
 
-        } catch (\Illuminate\Validation\ValidationException $e) {
+        } catch (ValidationException $e) {
             
             return redirect()->back()->withErrors($e->errors())->withInput();
 
@@ -51,9 +53,44 @@ class AuthController extends Controller
         }
     }
 
-    public function login(Request $request){  
+   
+    
+    public function login(Request $request)
+    {
+        try {
+            // Validate input data
+            $validated = $request->validate([
+                'email' => 'required|email',
+                'password' => 'required|string',
+            ]);
+    
+            // Attempt to authenticate the user
+            if (Auth::attempt($validated)) {
+                // Regenerate session to prevent session fixation
+                $request->session()->regenerate();
+    
+                // Redirect to the home page with a success message
+                return redirect()->route('home')->with('success', 'You have successfully logged in.');
+            }
+    
+            // If authentication fails, throw a validation exception with custom message
+            throw ValidationException::withMessages([
+                'credentials' => 'Sorry, incorrect email or password.',
+            ]);
+    
+        } catch (ValidationException $e) {
+            // Redirect back with validation errors and old input
+            return redirect()->back()->withErrors($e->errors())->withInput();
+    
+        } catch (\Exception $e) {
+            // Log the error for debugging purposes
+            Log::error('Login error: ' . $e->getMessage(), ['exception' => $e]);
+    
+            // Redirect with a generic error message
+            return redirect()->back()->with('error', 'An error occurred while logging in. Please try again.');
+        }
     }
-
+    
     public function logout(Request $request)
     {
         try {
