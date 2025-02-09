@@ -23,17 +23,14 @@ class AuthController extends Controller
         try {
             // Validate input data
             $validated = $request->validate([
-                'name' => 'required|string|max:255',
+                'first_name' => 'required|string|max:255',
+                'last_name' => 'required|string|max:255',
                 'email' => 'required|email|max:255|unique:users',
                 'password' => 'required|string|min:8|confirmed',
             ]);
 
             // Create user
-            $user = User::create([
-                'name' => $validated['name'],
-                'email' => $validated['email'],
-                'password' => bcrypt($validated['password']),
-            ]);
+            $user = User::create($validated);
 
             // Log the user in
             Auth::login($user);
@@ -42,6 +39,7 @@ class AuthController extends Controller
             return redirect()->route('home')->with('success', 'Registration successful and logged in.');
 
         } catch (\Illuminate\Validation\ValidationException $e) {
+            
             return redirect()->back()->withErrors($e->errors())->withInput();
 
         } catch (\Exception $e) {

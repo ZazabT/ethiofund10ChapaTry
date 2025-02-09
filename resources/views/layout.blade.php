@@ -41,7 +41,7 @@
             @auth
                 <!-- Display user's name and email if logged in -->
                 <span class="text-gray-700 font-medium text-md">
-                    Welcome, {{ Auth::user()->name }} ({{ Auth::user()->email }})
+                    Welcome, {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
                 </span>
 
                 <!-- Logout Button -->

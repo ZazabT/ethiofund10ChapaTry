@@ -26,19 +26,31 @@
         <form method="POST" action="{{ route('register') }}" class="mt-6">
             @csrf
 
-            <!-- Name -->
-            <div class="mb-4">
-                <label for="name" class="block text-gray-700 font-medium">Full Name</label>
-                <input type="text" id="name" name="name" class="mt-1 w-full px-4 py-2 border rounded-md focus:ring focus:ring-lime-500 focus:border-lime-500" required>
-                @error('name')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-            </div>
+            <div class="flex gap-5">
+                <!-- first_name -->
+                <div class="mb-4">
+                    <label for="first_name" class="block text-gray-700 font-medium">Firstname</label>
+                    <input type="text" id="first_name" name="first_name" value="{{old('first_name')}}" class="mt-1 w-full px-4 py-2 border rounded-md focus:ring focus:ring-lime-500 focus:border-lime-500" required>
+                    @error('first_name')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+    
+                <!-- last_name -->
+                <div class="mb-4">
+                    <label for="last_name" class="block text-gray-700 font-medium">Lastname</label>
+                    <input type="text" id="last_name" name="last_name" value="{{old('last_name')}}" class="mt-1 w-full px-4 py-2 border rounded-md focus:ring focus:ring-lime-500 focus:border-lime-500" required>
+                    @error('last_name')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
 
+            </div>
+            
             <!-- Email -->
             <div class="mb-4">
                 <label for="email" class="block text-gray-700 font-medium">Email Address</label>
-                <input type="email" id="email" name="email" class="mt-1 w-full px-4 py-2 border rounded-md focus:ring focus:ring-lime-500 focus:border-lime-500" required>
+                <input type="email" id="email" name="email" value="{{old('emil')}}"  class="mt-1 w-full px-4 py-2 border rounded-md focus:ring focus:ring-lime-500 focus:border-lime-500" required>
                 @error('email')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
@@ -47,7 +59,7 @@
             <!-- Password -->
             <div class="mb-4">
                 <label for="password" class="block text-gray-700 font-medium">Password</label>
-                <input type="password" id="password" name="password" class="mt-1 w-full px-4 py-2 border rounded-md focus:ring focus:ring-lime-500 focus:border-lime-500" required>
+                <input type="password" id="password" name="password" value="{{old('password')}}"  class="mt-1 w-full px-4 py-2 border rounded-md focus:ring focus:ring-lime-500 focus:border-lime-500" required>
                 @error('password')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
@@ -56,7 +68,7 @@
             <!-- Confirm Password -->
             <div class="mb-4">
                 <label for="password_confirmation" class="block text-gray-700 font-medium">Confirm Password</label>
-                <input type="password" id="password_confirmation" name="password_confirmation" class="mt-1 w-full px-4 py-2 border rounded-md focus:ring focus:ring-lime-500 focus:border-lime-500" required>
+                <input type="password" id="password_confirmation" name="password_confirmation"  value="{{old('password_confirmation')}}" class="mt-1 w-full px-4 py-2 border rounded-md focus:ring focus:ring-lime-500 focus:border-lime-500" required>
             </div>
 
             <!-- Register Button -->
