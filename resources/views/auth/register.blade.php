@@ -11,8 +11,19 @@
     <div class="w-full max-w-lg bg-white p-8 rounded-lg shadow-lg">
         <h2 class="text-3xl font-bold text-gray-800 text-center">Create an Account</h2>
 
+        <!-- Success/Errors -->
+        @if(session('success'))
+            <div class="bg-green-500 text-white p-3 rounded-md mb-4">
+                {{ session('success') }}
+            </div>
+        @elseif(session('error'))
+            <div class="bg-red-500 text-white p-3 rounded-md mb-4">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <!-- Registration Form -->
-        <form method="POST" action="" class="mt-6">
+        <form method="POST" action="{{ route('register') }}" class="mt-6">
             @csrf
 
             <!-- Name -->

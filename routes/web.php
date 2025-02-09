@@ -26,4 +26,6 @@ Route::post('/create-campaign', [CampaignController::class, 'store'])->name('cam
 
 // Auth routes
 Route::get('/register' ,[AuthController::class , 'showRegister'])->name('show.register');
+Route::post('/register' ,[AuthController::class , 'register'])->name('register');
+Route::post('/logout' ,[AuthController::class , 'logout'])->name('logout');
 Route::get('/login' ,[AuthController::class , 'showLogin'])->name('show.login');
