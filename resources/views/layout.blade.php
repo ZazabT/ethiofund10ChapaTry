@@ -56,9 +56,38 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white text-center py-6 mt-10">
-        <p>&copy; {{ date('Y') }} EthioFund. All rights reserved.</p>
+    <footer class="bg-gray-900 text-white py-10 mt-10 rounded-2xl mx-10">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center text-center md:text-left">
+            
+            <!-- Logo & Tagline -->
+            <div>
+                <a href="{{ route('home') }}" class="text-4xl font-extrabold tracking-wide hover:scale-110 transition duration-500">
+                    <span class="text-lime-500 font-serif">Ethio</span>
+                    <span class="text-white font-sans">Fund</span>
+                </a>
+                <p class="text-gray-400 mt-2">Empowering change, one donation at a time.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-lg font-semibold text-lime-400">Quick Links</h3>
+                <ul class="mt-2 space-y-2">
+                    <li><a href="" class="hover:text-lime-300 transition">Home</a></li>
+                    <li><a href="" class="hover:text-lime-300 transition">Campaigns</a></li>
+                    <li><a href="" class="hover:text-lime-300 transition">Sign Up</a></li>
+                    <li><a href="" class="hover:text-lime-300 transition">Login</a></li>
+                </ul>
+            </div>
+
+        
+        </div>
+
+      
     </footer>
+
+<!-- FontAwesome for icons -->
+<script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
+
 
 </body>
 </html>

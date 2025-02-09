@@ -1,11 +1,17 @@
-@extends('layout')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
-@section('content')
-<div class="min-h-screen flex items-center justify-center bg-gray-100">
     <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
         <h2 class="text-3xl font-bold text-gray-800 text-center">Login</h2>
 
-        <form method="POST" action="{{ route('login') }}" class="mt-6">
+        <form method="POST" action="" class="mt-6">
             @csrf
 
             <!-- Email -->
@@ -35,8 +41,9 @@
         <!-- Register Link -->
         <p class="mt-4 text-gray-600 text-center">
             Don't have an account?
-            <a href="{{ route('register') }}" class="text-lime-500 hover:underline">Register</a>
+            <a href="{{ route('show.register') }}" class="text-lime-500 hover:underline">Register</a>
         </p>
     </div>
-</div>
-@endsection
+
+</body>
+</html>
