@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+
+// Campaign routes 
+Route::get('/create-campaign', [CampaignController::class, 'create'])->name('campaign.create');
+Route::post('/create-campaign', [CampaignController::class, 'store'])->name('campaigns.store');
+
+
+// Auth routes
+Route::get('/register' ,[AuthController::class , 'showRegister'])->name('show.register');
+Route::get('/login' ,[AuthController::class , 'showLogin'])->name('show.login');

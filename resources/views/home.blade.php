@@ -4,24 +4,24 @@
 
 <!-- Hero Section -->
 <section class="relative bg-cover bg-center bg-no-repeat text-white text-center rounded-2xl min-h-[calc(100vh-150px)] flex items-center justify-center overflow-hidden"
-    style="background-image: url('https://images.pexels.com/photos/3101214/pexels-photo-3101214.jpeg?auto=compress&cs=tinysrgb&w=600');">
+    style="background-image: url('https://images.pexels.com/photos/8078358/pexels-photo-8078358.jpeg?auto=compress&cs=tinysrgb&w=600');">
     
     <!-- Dark Overlay -->
-    <div class="absolute inset-0 bg-black bg-opacity-50 rounded-2xl"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-10 rounded-2xl"></div>
 
     <!-- Content -->
     <div class="relative z-10 max-w-3xl mx-auto text-center px-6">
         <h1 class="text-6xl font-extrabold tracking-wide font-sans leading-tight">
             Support & Fundraise for a Cause
         </h1>
-        <p class="mt-4 text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">
+        <p class="mt-4 text-lg font-light text-white max-w-2xl mx-auto leading-relaxed">
             Join a vibrant community of changemakers, philanthropists, and visionaries working together 
             to drive real impact.
         </p>
     </div>
 
     <!-- CTA Button Positioned Bottom Right -->
-    <a href="#" class="absolute bottom-10 right-10 px-6 py-3 bg-lime-500 bg-opacity-70 text-gray-900 font-bold rounded-2xl shadow-md hover:bg-lime-600 hover:bg-opacity-50 transition duration-300">
+    <a href="{{ route('campaign.create') }}" class="absolute bottom-10 right-4 px-6 py-3 bg-lime-500 bg-opacity-70 hover:scale-95 text-gray-900 font-bold rounded-2xl shadow-md hover:bg-lime-600 hover:bg-opacity-50 transition duration-300">
         Start Campaign
     </a>
 
