@@ -41,7 +41,7 @@
 <section class="mt-12">
     <div class="grid md:grid-cols-3 gap-8">
         <!-- Card 1 -->
-        <div class="group relative p-8 bg-white shadow-2xl  rounded-2xl border-l-4 border-lime-400 hover:border-lime-500 transition-all duration-300 hover:-translate-y-2">
+        <div class="group relative p-8 bg-white shadow-2xl shadow-[0_4px_6px_rgba(50,205,50,0.3)] rounded-2xl border-l-4 border-lime-400 hover:border-lime-500 transition-all duration-300 hover:-translate-y-2">
             <div class="absolute top-6 -left-4 w-8 h-8 bg-lime-400 rounded-full flex items-center justify-center">
                 <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -55,7 +55,7 @@
         </div>
 
         <!-- Card 2 -->
-        <div class="group relative p-8 bg-white shadow-2xl rounded-2xl border-l-4 border-blue-400 hover:border-blue-500 transition-all duration-300 hover:-translate-y-2">
+        <div class="group relative p-8 bg-white shadow-2xl shadow-[0_4px_6px_rgba(70,130,180,0.3)] rounded-2xl border-l-4 border-blue-400 hover:border-blue-500 transition-all duration-300 hover:-translate-y-2">
             <div class="absolute top-6 -left-4 w-8 h-8 bg-blue-400 rounded-full flex items-center justify-center">
                 <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -69,7 +69,7 @@
         </div>
 
         <!-- Card 3 -->
-        <div class="group relative p-8 bg-white shadow-2xl rounded-2xl border-l-4 border-purple-400 hover:border-purple-500 transition-all duration-300 hover:-translate-y-2">
+        <div class="group relative p-8 bg-white shadow-2xl shadow-[0_4px_6px_rgba(138,43,226,0.3)] rounded-2xl border-l-4 border-purple-400 hover:border-purple-500 transition-all duration-300 hover:-translate-y-2">
             <div class="absolute top-6 -left-4 w-8 h-8 bg-purple-400 rounded-full flex items-center justify-center">
                 <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
