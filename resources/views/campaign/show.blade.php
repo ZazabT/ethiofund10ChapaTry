@@ -63,10 +63,12 @@
             <div class="md:col-span-2">
                 <div class="p-8 ">
                     <h2 class="text-2xl font-bold text-gray-900 mb-6">About the Campaign</h2>
-                    <div class="prose max-w-none text-gray-600">
-                        <p class="text-lg leading-relaxed">{{ $campaign->description }}</p>
-                        
-                        <h3 class="text-xl font-semibold mt-8 text-gray-900">Why Your Support Matters</h3>
+                    <div class="prose max-w-4xl text-gray-600">
+                        <!-- Split description into paragraphs -->
+                        @foreach(explode("\n", $campaign->description) as $paragraph)
+                        <p class="text-lg leading-relaxed mb-4">{{ $paragraph }}</p>
+                        @endforeach
+                        <h3 class="text-xl pt-8 font-semibold mt-8 text-gray-900">Why Your Support Matters</h3>
                         <p class="mt-4 text-gray-600">Our initiative focuses on creating sustainable change through community-driven solutions. Your contribution directly impacts:</p>
                         <ul class="mt-4 space-y-2">
                             <li class="flex items-center">
