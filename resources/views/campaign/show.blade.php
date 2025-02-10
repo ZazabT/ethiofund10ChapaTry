@@ -93,33 +93,25 @@
             <!-- Donation Card -->
             <div class="bg-white rounded-xl shadow-lg p-8 h-fit sticky top-8">
                 <h3 class="text-2xl font-bold text-gray-900 mb-6">Make a Difference</h3>
-                <form action="" method="POST" class="space-y-6">
+                <form action="{{ route('donate') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="campaign_id" value="{{ $campaign->id }}">
+
+                    <!-- Hidden field for Campaign ID -->
+                   <input type="hidden" name="campaign_id" value="{{ $campaign->id }}">
 
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Select Amount</label>
                         <div class="grid grid-cols-3 gap-3">
-                            <button type="button" class="donation-amount-btn" data-amount="25">$25</button>
-                            <button type="button" class="donation-amount-btn" data-amount="50">$50</button>
-                            <button type="button" class="donation-amount-btn" data-amount="100">$100</button>
-                            <button type="button" class="donation-amount-btn" data-amount="250">$250</button>
-                            <button type="button" class="donation-amount-btn" data-amount="500">$500</button>
-                            <input type="number" name="custom_amount" 
-                                   class="col-span-3 mt-2 p-2 border rounded-lg focus:ring-lime-500 focus:border-lime-500" 
-                                   placeholder="Custom amount">
+                            <input type="number" name="amount" class="col-span-3 mt-2 p-2 border rounded-lg focus:ring-lime-500 focus:border-lime-500" placeholder="Custom amount">
                         </div>
                     </div>
 
                     <div>
                         <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Personal Message</label>
-                        <textarea name="message" rows="4" 
-                                  class="w-full p-3 border rounded-lg focus:ring-lime-500 focus:border-lime-500" 
-                                  placeholder="Share words of encouragement..."></textarea>
+                        <textarea name="message" rows="4" id="message" class="w-full p-3 border rounded-lg focus:ring-lime-500 focus:border-lime-500" placeholder="Share words of encouragement..."></textarea>
                     </div>
 
-                    <button type="submit" 
-                            class="w-full py-3 px-6 bg-lime-600 hover:bg-lime-700 text-white font-semibold rounded-lg transition-all">
+                    <button type="submit" class="w-full py-3 px-6 bg-lime-600 hover:bg-lime-700 text-white font-semibold rounded-lg transition-all">
                         Donate Now
                     </button>
                 </form>
@@ -149,21 +141,5 @@
     </div>
 </div>
 
-<style>
-    .donation-amount-btn {
-        @apply py-2 px-4 border rounded-lg font-medium text-gray-700 hover:border-lime-500 hover:bg-lime-50 transition-colors;
-    }
-    .prose ul {
-        @apply list-none pl-0;
-    }
-</style>
-
-<script>
-    document.querySelectorAll('.donation-amount-btn').forEach(button => {
-        button.addEventListener('click', () => {
-            document.querySelector('input[name="custom_amount"]').value = button.dataset.amount;
-        });
-    });
-</script>
 
 @endsection

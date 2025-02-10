@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChapaPaymentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,11 +23,14 @@ Route::get('/campaign/{id}', [CampaignController::class, 'show'])->name('campaig
 
 
 
-// Protect Campaign routes with auth middleware
+// Protect Campaign and pay routes with auth middleware
 Route::middleware(['auth'])->group(function () {
     Route::get('/create-campaign', [CampaignController::class, 'create'])->name('campaign.create');
     Route::post('/create-campaign', [CampaignController::class, 'store'])->name('campaigns.store');
+    Route::post('/donate', [ChapaPaymentController::class, 'donate'])->name('donate');
+    Route::get('/payment/callback/{transactionId}', [ChapaPaymentController::class, 'callback'])->name('payment.callback');
 });
+
 
 
 
