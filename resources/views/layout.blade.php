@@ -73,34 +73,72 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-10 mb-10 mt-40 rounded-2xl mx-10">
-        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center text-center md:text-left">
-            
-            <!-- Logo & Tagline -->
-            <div>
-                <a href="{{ route('home') }}" class="text-4xl font-extrabold tracking-wide hover:scale-110 transition duration-500">
-                    <span class="text-lime-500 font-serif">Ethio</span>
-                    <span class="text-white font-sans">Fund</span>
-                </a>
-                <p class="text-gray-400 mt-2">Empowering change, one donation at a time.</p>
-            </div>
-
-            <!-- Quick Links -->
-            <div>
-                <h3 class="text-lg font-semibold text-lime-400">Quick Links</h3>
-                <ul class="mt-2 space-y-2">
-                    <li><a href="" class="hover:text-lime-300 transition">Home</a></li>
-                    <li><a href="" class="hover:text-lime-300 transition">Campaigns</a></li>
-                    <li><a href="" class="hover:text-lime-300 transition">Sign Up</a></li>
-                    <li><a href="" class="hover:text-lime-300 transition">Login</a></li>
-                </ul>
-            </div>
-
+<footer class="bg-gray-900 text-white py-12 mt-40 rounded-2xl mx-10">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-2">
         
+        <!-- Logo & Tagline -->
+        <div class="md:col-span-2">
+            <a href="{{ route('home') }}" class="text-4xl font-extrabold tracking-wide hover:scale-105 transition duration-300 inline-block">
+                <span class="text-lime-500 font-serif">Ethio</span>
+                <span class="text-white font-sans">Fund</span>
+            </a>
+            <p class="text-gray-400 mt-4 text-sm leading-relaxed">
+                Empowering change, one donation at a time. Join us in making a difference for communities in need.
+            </p>
+            <div class="mt-6 flex space-x-4">
+                <a href="#" class="text-gray-400 hover:text-lime-500 transition duration-300">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-lime-500 transition duration-300">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-lime-500 transition duration-300">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-lime-500 transition duration-300">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
         </div>
 
-      
-    </footer>
+        <!-- Quick Links -->
+        <div>
+            <h3 class="text-lg font-semibold text-lime-400 mb-4">Quick Links</h3>
+            <ul class="space-y-3">
+                <li><a href="#" class="text-gray-400 hover:text-lime-300 transition duration-300">Home</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-lime-300 transition duration-300">Campaigns</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-lime-300 transition duration-300">Sign Up</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-lime-300 transition duration-300">Login</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Information -->
+        <div>
+            <h3 class="text-lg font-semibold text-lime-400 mb-4">Contact Us</h3>
+            <ul class="space-y-3">
+                <li class="text-gray-400">Email: <a href="mailto:support@ethiofund.com" class="hover:text-lime-300 transition duration-300">support@ethiofund.com</a></li>
+                <li class="text-gray-400">Phone: <a href="tel:+1234567890" class="hover:text-lime-300 transition duration-300">+123 456 7890</a></li>
+                <li class="text-gray-400">Address: Addis Ababa, Ethiopia</li>
+            </ul>
+        </div>
+
+        <!-- Newsletter Subscription -->
+        <div>
+            <h3 class="text-lg font-semibold text-lime-400 mb-4">Subscribe to Our Newsletter</h3>
+            <form class="flex flex-col space-y-3">
+                <input type="email" placeholder="Your email address" class="p-2 rounded-lg bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-lime-500">
+                <button type="submit" class="bg-lime-500 text-white py-2 px-4 rounded-lg hover:bg-lime-600 transition duration-300">Subscribe</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="border-t border-gray-800 mt-10 pt-8 text-center">
+        <p class="text-gray-400 text-sm">
+            &copy; 2023 EthioFund. All rights reserved.
+        </p>
+    </div>
+</footer>
 
 <!-- FontAwesome for icons -->
 <script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
