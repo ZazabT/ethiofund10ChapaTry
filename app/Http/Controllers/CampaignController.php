@@ -11,18 +11,16 @@ class CampaignController extends Controller
 {
     // Show All Campaign
 
-    public function index(){
-
-        // try get all campains and pass the latest 10 
-        try{
-            $campaigns = Campaign::latest()->get();
+    public function index() {
+        try {
+            $campaigns = Campaign::latest()->take(10)->get();
             return view('home', compact('campaigns'));
         } catch (\Exception $e) {
             Log::error('Error fetching campaigns: ' . $e->getMessage());
             return back()->with('error', 'Something went wrong while loading campaigns.');
         }
     }
-
+    
    // Show create campaign form
    public function create(){
     return view('campaign.create');
@@ -39,8 +37,6 @@ class CampaignController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'goal_amount' => 'required|numeric|min:1',
-            'raised_amount' => 'required|numeric',
-            'status'=>'required|in:active,completed,expired',
             'deadline' => 'required|date',
         ]);
 
@@ -50,10 +46,7 @@ class CampaignController extends Controller
         $campaign->title = $request->title;
         $campaign->description = $request->description;
         $campaign->goal_amount = $request->goal_amount;
-        $campaign->raised_amount = $request->goal_amount;
-        $campaign->status = $request->status;
         $campaign->deadline = $request->deadline;
-        
         $campaign->save();
         return redirect()->route('home')->with('success', 'Campaign created successfully!');
     }catch (\Exception $e) {
@@ -66,7 +59,7 @@ class CampaignController extends Controller
    public function show($id){
     try{
         $campaign = Campaign::findOrFail($id);
-        return view('campaigns.show', compact('campaign'));
+        return view('campaign.show', compact('campaign'));
     }catch (\Exception $e) {
             Log::error('Error fetching campaign: ' . $e->getMessage());
             return back()->with('error', 'Campaign not found.'. $e->getMessage());

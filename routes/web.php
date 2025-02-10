@@ -14,14 +14,20 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+// campaign
+Route::get('/', [CampaignController::class, 'index'])->name('home');
+Route::get('/campaign/{id}', [CampaignController::class, 'show'])->name('campaign.show');
 
 
-// Campaign routes 
-Route::get('/create-campaign', [CampaignController::class, 'create'])->name('campaign.create');
-Route::post('/create-campaign', [CampaignController::class, 'store'])->name('campaigns.store');
+
+
+
+// Protect Campaign routes with auth middleware
+Route::middleware(['auth'])->group(function () {
+    Route::get('/create-campaign', [CampaignController::class, 'create'])->name('campaign.create');
+    Route::post('/create-campaign', [CampaignController::class, 'store'])->name('campaigns.store');
+});
+
 
 
 // Auth routes

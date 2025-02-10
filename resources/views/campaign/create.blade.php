@@ -34,12 +34,12 @@
             @error('goal_amount') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
         </div>
 
-        <!-- Image Upload -->
-        {{-- <div class="mb-4">
-            <label class="block text-gray-700 font-medium mb-2">Upload Image</label>
-            <input type="file" name="image" class="w-full border border-gray-300 p-2 rounded-lg focus:ring-lime-500 focus:border-lime-500">
-            @error('image') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
-        </div> --}}
+           <!-- Deadline -->
+           <div class="mb-4">
+            <label class="block text-gray-700 font-medium mb-2">Deadline</label>
+            <input type="date" name="deadline" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-lime-500 focus:border-lime-500" placeholder="Enter goal amount" value="{{ old('goal_amount') }}">
+            @error('deadline') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
+        </div>
 
         <!-- Submit Button -->
         <div class="mt-6">

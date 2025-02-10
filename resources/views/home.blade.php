@@ -35,7 +35,6 @@
     <p class="text-lg text-gray-600 ">
         Get started in just a few clicks! Create campaigns, share them across social media, 
         and receive funds instantly. Our secure and transparent system ensures fast transactions, 
-        
     </p>
 </div>
 
@@ -64,9 +63,32 @@
     </div>
 </section>
 
+<!-- Featured Campaigns Section -->
+<section class="mt-20">
+    <!-- Heading -->
+    <div class="mb-8">
+        <h2 class="text-4xl font-bold text-gray-900">
+            Featured <span class="text-lime-500">Campaigns</span>
+        </h2>
+        <p class="mt-2 text-lg text-gray-600">
+            Explore some of the most impactful campaigns on our platform.
+        </p>
+    </div>
 
-
-<!-- Campain card sections Section -->
-
+    <!-- Campaign Cards -->
+    <div class="grid md:grid-cols-3 gap-8">
+        @foreach($campaigns as $campaign)
+        <!-- Campaign Card -->
+        <div class="p-6 bg-white shadow-lg rounded-2xl border border-gray-200 hover:shadow-xl transition duration-300">
+            <h3 class="text-xl font-bold text-gray-800">{{ $campaign->title }}</h3>
+            <p class="mt-3 text-gray-600 line-clamp-3">{{ $campaign->description }}</p>
+            <div class="mt-4 flex justify-between items-center">
+                <span class="text-lime-500 font-bold">${{ number_format($campaign->goal_amount, 2) }}</span>
+                <a href="{{ route('campaign.show', $campaign->id) }}" class="text-lime-600 font-semibold hover:underline">View Details</a>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</section>
 
 @endsection
