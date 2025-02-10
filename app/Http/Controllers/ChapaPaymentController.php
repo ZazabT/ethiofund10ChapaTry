@@ -58,7 +58,7 @@ class ChapaPaymentController extends Controller
                 'description' => $description,
             ]
         ];
-        
+
         // Log the data being sent to Chapa
         Log::info('Chapa payment data prepared', $chapaData);
 
@@ -68,21 +68,24 @@ class ChapaPaymentController extends Controller
 
             // Check if the payment initialization was successful
             if ($paymentInit['status'] !== 'success') {
+
                 Log::error('Chapa payment initialization failed', [
                     'response' => $paymentInit
                 ]);
 
-                // Create a new payment record with 'pending' status and the generated reference
-                $payment = Payment::create([
-                    'user_id' => Auth::id(), // Assuming the user is authenticated
-                    'campaign_id' => $campaign->id,
-                    'amount' => $request->amount,
-                    'message' => $request->message,
-                    'transaction_id' => $this->reference, // Use the protected reference
-                    'status' => 'pending', // Initially set status as pending
-                ]);
+               
                 return redirect()->back()->with('error', 'Something went wrong, please try again.');
             }
+
+             // Create a new payment record with 'pending' status and the generated reference
+             $payment = Payment::create([
+                'user_id' => Auth::id(), // Assuming the user is authenticated
+                'campaign_id' => $campaign->id,
+                'amount' => $request->amount,
+                'message' => $request->message,
+                'transaction_id' => $this->reference, // Use the protected reference
+                'status' => 'pending', // Initially set status as pending
+            ]);
 
             // Log successful payment initialization
             Log::info('Chapa payment initialized successfully', [
