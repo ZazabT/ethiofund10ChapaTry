@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="min-h-screen bg-gray-50">
+<div class="min-h-screen ">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <!-- Navigation -->
         <div class="mb-8">
@@ -15,14 +15,14 @@
         </div>
 
         <!-- Campaign Header -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="bg-white overflow-hidden">
             <!-- Image Section -->
 
             <!-- Title Section -->
             <div class="px-8 py-6">
                 <div class="flex items-center justify-between">
                     <div>
-                        <h1 class="text-4xl font-bold text-gray-900 mb-2 bg-gradient-to-r from-lime-600 to-lime-400 bg-clip-text text-transparent">
+                        <h1 class="text-4xl font-bold text-gray-900 mb-2 ">
                             {{ $campaign->title }}
                         </h1>
                         <p class="text-gray-500 text-sm">
@@ -37,7 +37,7 @@
         </div>
 
         <!-- Progress Section -->
-        <div class="mt-8 bg-white rounded-xl shadow-lg p-8">
+        <div class="mt-8 p-8">
             <div class="max-w-3xl mx-auto">
                 <div class="flex justify-between mb-3">
                     <span class="text-base font-medium text-lime-600">Raised</span>
@@ -59,7 +59,7 @@
         <div class="mt-8 grid gap-8 md:grid-cols-3">
             <!-- Main Content -->
             <div class="md:col-span-2">
-                <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="p-8">
                     <h2 class="text-2xl font-bold text-gray-900 mb-6">About the Campaign</h2>
                     <div class="prose max-w-none text-gray-600">
                         <p class="text-lg leading-relaxed">{{ $campaign->description }}</p>
@@ -91,7 +91,7 @@
             </div>
 
             <!-- Donation Card -->
-            <div class="bg-white rounded-xl shadow-lg p-8 h-fit sticky top-8">
+            <div class="bg-white  p-8 h-fit sticky top-8">
                 <h3 class="text-2xl font-bold text-gray-900 mb-6">Make a Difference</h3>
                 <form action="{{ route('donate') }}" method="POST">
                     @csrf
@@ -119,7 +119,7 @@
         </div>
 
         <!-- Impact Section -->
-        <div class="mt-12 bg-lime-50 rounded-xl shadow-lg p-8">
+        <div class="mt-12 bg-lime-50 p-8">
             <div class="max-w-4xl mx-auto text-center">
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">Your Impact in Numbers</h2>
                 <div class="grid md:grid-cols-3 gap-8 mt-6">
