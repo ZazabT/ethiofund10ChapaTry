@@ -41,7 +41,7 @@
 <section class="mt-12">
     <div class="grid md:grid-cols-3 gap-8">
         <!-- Card 1 -->
-        <div class="group relative p-8 bg-white shadow-2xl rounded-2xl border-l-4 border-lime-400 hover:border-lime-500 transition-all duration-300 hover:-translate-y-2">
+        <div class="group relative p-8 bg-white shadow-2xl  rounded-2xl border-l-4 border-lime-400 hover:border-lime-500 transition-all duration-300 hover:-translate-y-2">
             <div class="absolute top-6 -left-4 w-8 h-8 bg-lime-400 rounded-full flex items-center justify-center">
                 <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -96,8 +96,14 @@
     </div>
 
     <div class="grid md:grid-cols-3 gap-8">
+        @if ($campaigns->isEmpty())
+            <div class="flex justify-center items-center py-12">
+                <p class="text-xl text-gray-600">No campaigns available</p>
+            </div>
+        @endif
+
         @foreach($campaigns as $campaign)
-        <div class="group relative bg-white rounded-2xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-300 hover:-translate-y-2">
+        <div class="group relative bg-white border border-lime-100 shadow-md overflow-hidden hover:shadow-3xl transition-all duration-500 hover:-translate-y-2">
             {{-- <!-- Image Container -->
             <div class="h-48 bg-gray-200 overflow-hidden relative">
                 <img src="https://source.unsplash.com/random/800x600?sig={{ $loop->index }}" 
@@ -105,6 +111,23 @@
                      class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60"></div>
             </div> --}}
+
+
+
+              <!-- Hover Badge -->
+              @if ($campaign->status == 'active')
+              <div class="absolute bottom-0 right-0 bg-lime-500 text-white px-5 py-1 rounded-full text-sm transform -translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                  Active
+              </div>
+              @elseif ($campaign->status == 'completed')
+              <div class="absolute bottom-0 right-0  bg-gray-500 text-white px-3 py-1 rounded-full text-sm transform -translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                  Completed 
+              </div>
+              @elseif ($campaign->status == 'expired')
+                  <div class="absolute bottom-0 right-0  bg-red-500 text-white px-3 py-1 rounded-full text-sm transform -translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                      Expired 
+                  </div>
+              @endif
 
             <!-- Content -->
             <div class="p-6">
@@ -135,10 +158,8 @@
                 </div>
             </div>
 
-            <!-- Hover Badge -->
-            <div class="absolute top-4 right-4 bg-lime-500 text-white px-3 py-1 rounded-full text-sm transform -translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                Trending 🔥
-            </div>
+          
+
         </div>
         @endforeach
     </div>
