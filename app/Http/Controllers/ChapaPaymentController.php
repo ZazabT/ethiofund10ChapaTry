@@ -57,7 +57,7 @@ class ChapaPaymentController extends Controller
             'email' => Auth::user()->email,
             'tx_ref' => $this->reference, // Use the payment's transaction ID
             'currency' => 'ETB', // Set currency to ETB (Ethiopian Birr)
-            'callback_url' => 'https://dirty-donuts-fry.loca.lt/payment/callback/' . $this->reference,// URL for the callback afterpayment
+            'callback_url' => 'https://ripe-carrots-sort.loca.lt/payment/callback/' . $this->reference,// URL for the callback afterpayment
             'return_url' => route('payment.redirect', ['transactionId' => $this->reference]),
             'first_name' => Auth::user()->first_name,
             'last_name' => Auth::user()->last_name,
@@ -121,7 +121,6 @@ class ChapaPaymentController extends Controller
         try {
             $paymentData = Chapa::verifyTransaction($transactionId);
             Log::info('Chapa payment verification response', $paymentData);
-            dd($paymentData);
 
             // Ensure the response contains the 'status' key
             if (!isset($paymentData['status'])) {
@@ -160,7 +159,65 @@ class ChapaPaymentController extends Controller
                 ]);
             }
 
-            return response()->json(['message' => 'Payment processed successfully'], 200);
+
+        } catch (\Exception $e) {
+            Log::error('Error during Chapa payment verification', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+        }
+    }
+
+
+    
+    public function redirect(Request $request)
+    {
+        $transactionId = $request->query('transactionId');
+
+        // Find the payment record
+        $payment = Payment::where('transaction_id', $transactionId)->first();
+        try {
+            $paymentData = Chapa::verifyTransaction($transactionId);
+            Log::info('Chapa payment verification response', $paymentData);
+
+            // Ensure the response contains the 'status' key
+            if (!isset($paymentData['status'])) {
+                throw new \Exception('Invalid payment verification response.');
+            }
+
+            $payment = Payment::where('transaction_id', $transactionId)->firstOrFail();
+
+            if ($paymentData['status'] === 'success') {
+                $payment->status = 'successful';
+                $payment->save();
+
+                Log::info('Payment verified and marked as successful', [
+                    'payment_id' => $payment->id,
+                    'transaction_id' => $payment->transaction_id,
+                ]);
+
+                // Update campaign raised amount
+                $campaign = Campaign::find($payment->campaign_id);
+                if ($campaign) {
+                    $campaign->raised_amount += $payment->amount;
+                    $campaign->save();
+
+                    Log::info('Campaign raised amount updated', [
+                        'campaign_id' => $campaign->id,
+                        'raised_amount' => $campaign->raised_amount,
+                    ]);
+                }
+            } else {
+                $payment->status = 'failed';
+                $payment->save();
+
+                Log::warning('Payment verification failed', [
+                    'payment_id' => $payment->id,
+                    'transaction_id' => $payment->transaction_id,
+                ]);
+            }
+
+            
 
         } catch (\Exception $e) {
             Log::error('Error during Chapa payment verification', [
@@ -169,16 +226,6 @@ class ChapaPaymentController extends Controller
             ]);
             return response()->json(['error' => 'Error verifying payment'], 500);
         }
-    }
-
-
-
-    public function redirect(Request $request)
-    {
-        $transactionId = $request->query('transactionId');
-
-        // Find the payment record
-        $payment = Payment::where('transaction_id', $transactionId)->first();
 
         if (!$payment) {
             return redirect()->route('home')->with('error', 'Payment not found.');
