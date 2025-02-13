@@ -29,6 +29,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/create-campaign', [CampaignController::class, 'store'])->name('campaigns.store');
     Route::post('/donate', [ChapaPaymentController::class, 'donate'])->name('donate');
     Route::get('/payment/callback/{transactionId}', [ChapaPaymentController::class, 'callback'])->name('payment.callback');
+    Route::get('/payment/redirect', [ChapaPaymentController::class, 'redirect'])->name('payment.redirect');
+
 });
 
 

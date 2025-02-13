@@ -95,12 +95,12 @@
         </p>
     </div>
 
+    @if ($campaigns->isEmpty())
+    <div class="flex justify-center items-center py-12 ">
+        <p class="text-xl text-gray-600">No campaigns available</p>
+    </div>
+    @endif
     <div class="grid md:grid-cols-3 gap-8">
-        @if ($campaigns->isEmpty())
-            <div class="flex justify-center items-center py-12">
-                <p class="text-xl text-gray-600">No campaigns available</p>
-            </div>
-        @endif
 
         @foreach($campaigns as $campaign)
         <div class="group relative bg-white border border-lime-100 shadow-md overflow-hidden hover:shadow-3xl transition-all duration-500 hover:-translate-y-2">
