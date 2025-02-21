@@ -23,8 +23,12 @@
 
                 <!-- Website Name on Top -->
                 <div class="text-center mb-8">
-                    <h1 class="text-3xl font-bold text-lime-500">Ethio <span class="text-2xl text-gray-700">Fund</span></h1>
+                    <a href="{{ route('home') }}" class="text-xl font-semibold text-lime-500 hover:text-lime-600 hover:scale-105 transform transition duration-300 ease-in-out">
+                        Ethio <span class="text-xl text-gray-700 hover:text-gray-600">Fund</span>
+                    </a>
                 </div>
+
+
 
                 <!-- Welcome header -->
                 <div class="text-center mb-6">
