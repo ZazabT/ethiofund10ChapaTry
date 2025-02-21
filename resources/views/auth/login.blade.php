@@ -22,9 +22,9 @@
             <div class="w-full max-w-md p-8">
 
                 <!-- Website Name on Top -->
-                <div class="text-center mb-8">
-                    <a href="{{ route('home') }}" class="text-xl font-semibold text-lime-500 hover:text-lime-600 hover:scale-105 transform transition duration-300 ease-in-out">
-                        Ethio <span class="text-xl text-gray-700 hover:text-gray-600">Fund</span>
+                <div class="text-center mb-8 hover:scale-95 transform transition duration-500 ease-in-out">
+                    <a href="{{ route('home') }}" class="text-lg  text-lime-500 hover:text-lime-600 hover:scale-105 transform transition duration-300 ease-in-out">
+                        Ethio <span class="text-lg text-gray-700 hover:text-gray-600">Fund</span>
                     </a>
                 </div>
 
