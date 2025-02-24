@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
+use App\Models\Transaction;
 use App\Models\Campaign;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log; 
+use Illuminate\Support\Facades\Log;
 use Chapa\Chapa\Facades\Chapa as Chapa;
 
 
@@ -42,22 +43,22 @@ class ChapaPaymentController extends Controller
             'campaign_id.required' => 'Please select a campaign to donate to.',
             'campaign_id.exists' => 'The selected campaign does not exist.',
         ]);
-        
+
 
         // Find the campaign using the provided campaign ID
         $campaign = Campaign::findOrFail($request->campaign_id);
 
-    
+
         // Generate the dynamic description
         $description = "You are donating {$request->amount} ETB to support {$campaign->title}";
-         
+
         // Prepare data for Chapa payment initialization
         $chapaData = [
             'amount' => $request->amount,
             'email' => Auth::user()->email,
             'tx_ref' => $this->reference, // Use the payment's transaction ID
             'currency' => 'ETB', // Set currency to ETB (Ethiopian Birr)
-            'callback_url' => 'https://ripe-carrots-sort.loca.lt/payment/callback/' . $this->reference,// URL for the callback afterpayment
+            'callback_url' => 'https://ripe-carrots-sort.loca.lt/payment/callback/' . $this->reference, // URL for the callback afterpayment
             'return_url' => route('payment.redirect', ['transactionId' => $this->reference]),
             'first_name' => Auth::user()->first_name,
             'last_name' => Auth::user()->last_name,
@@ -67,8 +68,8 @@ class ChapaPaymentController extends Controller
             ]
         ];
 
-        
-        
+
+
 
         // Log the data being sent to Chapa
         Log::info('Chapa payment data prepared', $chapaData);
@@ -76,14 +77,14 @@ class ChapaPaymentController extends Controller
         // Initialize the payment via Chapa gateway
         try {
             $paymentInit = Chapa::initializePayment($chapaData);
-        
+
             if ($paymentInit['status'] !== 'success') {
                 Log::error('Chapa payment initialization failed', [
                     'response' => $paymentInit
                 ]);
                 return redirect()->back()->with('error', 'Payment initialization failed. Please try again.');
             }
-        
+
             // Create payment record
             $payment = Payment::create([
                 'user_id' => Auth::id(),
@@ -93,13 +94,12 @@ class ChapaPaymentController extends Controller
                 'transaction_id' => $this->reference,
                 'status' => 'pending',
             ]);
-        
+
             Log::info('Chapa payment initialized successfully', [
                 'checkout_url' => $paymentInit['data']['checkout_url']
             ]);
-        
+
             return redirect($paymentInit['data']['checkout_url']);
-        
         } catch (\Exception $e) {
             Log::error('Error during Chapa payment initialization', [
                 'error' => $e->getMessage(),
@@ -109,7 +109,7 @@ class ChapaPaymentController extends Controller
         }
     }
 
-   
+
 
     /**
      * Callback function for payment verification.
@@ -158,8 +158,6 @@ class ChapaPaymentController extends Controller
                     'transaction_id' => $payment->transaction_id,
                 ]);
             }
-
-
         } catch (\Exception $e) {
             Log::error('Error during Chapa payment verification', [
                 'error' => $e->getMessage(),
@@ -169,7 +167,7 @@ class ChapaPaymentController extends Controller
     }
 
 
-    
+
     public function redirect(Request $request)
     {
         $transactionId = $request->query('transactionId');
@@ -188,6 +186,8 @@ class ChapaPaymentController extends Controller
             $payment = Payment::where('transaction_id', $transactionId)->firstOrFail();
 
             if ($paymentData['status'] === 'success') {
+
+                // make the payment in the dataase successful
                 $payment->status = 'successful';
                 $payment->save();
 
@@ -195,6 +195,8 @@ class ChapaPaymentController extends Controller
                     'payment_id' => $payment->id,
                     'transaction_id' => $payment->transaction_id,
                 ]);
+
+
 
                 // Update campaign raised amount
                 $campaign = Campaign::find($payment->campaign_id);
@@ -207,6 +209,30 @@ class ChapaPaymentController extends Controller
                         'raised_amount' => $campaign->raised_amount,
                     ]);
                 }
+
+
+                //create transaction
+                $user = $payment->user;
+                $campaign_user = $payment->campaign->user;
+
+                $wallet = $campaign_user->wallet;
+
+
+                // Create a new transaction for the deposit
+                $transaction = new Transaction();
+                $transaction->user_id = $user->id;
+                $transaction->type = 'deposit';
+                $transaction->amount = $payment->amount;
+                $transaction->reference = $payment->transaction_id;
+
+
+                // Update wallet balance after the payment
+                $wallet->balance += $payment->amount;
+                $wallet->save();
+
+                // Save the transaction record with updated balance
+                $transaction->balance_after = $wallet->balance;
+                $transaction->save();
             } else {
                 $payment->status = 'failed';
                 $payment->save();
@@ -216,9 +242,6 @@ class ChapaPaymentController extends Controller
                     'transaction_id' => $payment->transaction_id,
                 ]);
             }
-
-            
-
         } catch (\Exception $e) {
             Log::error('Error during Chapa payment verification', [
                 'error' => $e->getMessage(),
@@ -238,6 +261,4 @@ class ChapaPaymentController extends Controller
             return view('paymenet.failed', compact('payment'));
         }
     }
-
-    
 }

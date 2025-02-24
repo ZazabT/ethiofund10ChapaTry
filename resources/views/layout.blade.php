@@ -48,12 +48,12 @@
                     </span>
 
                     <!-- Wallet Balance Section -->
-                    <div class="flex items-center space-x-1 text-green-500 hover:text-green-600 transition duration-300">
-                        <img src="{{ asset('wallet.svg') }}" alt="wallet" class="w-6 h-6"> <!-- Wallet icon -->
+                    <div class="flex items-center space-x-1 text-lime-500 hover:text-lime-600 transition duration-300">
+                        <img src="{{ asset('wallet (1).svg') }}" alt="wallet" class="w-6 h-6"> <!-- Wallet icon -->
                         @if(Auth::user()->wallet)
-                            <span class="font-semibold text-md">br{{ number_format(Auth::user()->wallet->balance, 2) }}</span>
+                            <span class="font-semibold text-md">br {{ number_format(Auth::user()->wallet->balance, 2) }}</span>
                         @else
-                            <span class="font-semibold text-md">br0.00</span>
+                            <span class="font-semibold text-md">br 0.00</span>
                         @endif
                     </div>
 
