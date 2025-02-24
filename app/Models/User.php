@@ -46,11 +46,40 @@ class User extends Authenticatable
 
     // Relations
 
-    public function campaigns(){
+    public function campaigns()
+    {
         return $this->hasMany(Campaign::class);
     }
 
-    public function payments(){
+    public function payments()
+    {
         return $this->hasMany(Payment::class);
+    }
+
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+
+
+    /**
+     * The "booted" method of the model.
+     * This is where we hook into the model's "created" event to create a wallet.
+     */
+    protected static function booted()
+    {
+        static::created(function ($user) {
+            // Create a wallet with a balance of 0 when a new user is created
+            Wallet::create([
+                'user_id' => $user->id,
+                'balance' => 0.00,
+            ]);
+        });
     }
 }

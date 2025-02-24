@@ -11,7 +11,7 @@
     <!-- Flex container for image and form -->
     <div class="flex w-full rounded-2xl overflow-hidden">
 
-         <!-- Rightside Image -->
+        <!-- Rightside Image -->
         <div class="w-1/3 bg-cover bg-center hidden md:block" style="background-image: url('https://images.pexels.com/photos/3334646/pexels-photo-3334646.jpeg?auto=compress&cs=tinysrgb&w=600');">
         </div>
         <!-- Leftside Form -->

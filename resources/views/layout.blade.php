@@ -49,6 +49,11 @@
                     Welcome, {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
                 </span>
 
+                @if(Auth::user()->wallet)
+                    - Balance: br{{ number_format(Auth::user()->wallet->balance, 2) }}
+                @else
+                    - Balance: br0.00
+                @endif
                 <!-- Logout Button -->
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
