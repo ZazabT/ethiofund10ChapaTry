@@ -225,9 +225,16 @@ class ChapaPaymentController extends Controller
                 $transaction->amount = $payment->amount;
                 $transaction->reference = $payment->transaction_id;
 
+                $chapaCut = $payment->amount * 0.025;  // Chapa cuts 2.5%
+                $remainingAfterChapa = $payment->amount - $chapaCut;
+
+                $yourCut = $remainingAfterChapa * 0.05;  // You take 5%
+
+                $amountYouKeep = $remainingAfterChapa - $yourCut;  // The final amount you keep
+
 
                 // Update wallet balance after the payment
-                $wallet->balance += $payment->amount;
+                $wallet->balance += $amountYouKeep;
                 $wallet->save();
 
                 // Save the transaction record with updated balance

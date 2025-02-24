@@ -29,7 +29,7 @@
 
         <!-- Goal Amount -->
         <div class="mb-4">
-            <label class="block text-gray-700 font-medium mb-2">Goal Amount (USD)</label>
+            <label class="block text-gray-700 font-medium mb-2">Goal Amount (Birr)</label>
             <input type="number" name="goal_amount" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-lime-500 focus:border-lime-500" placeholder="Enter goal amount" value="{{ old('goal_amount') }}">
             @error('goal_amount') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
         </div>
